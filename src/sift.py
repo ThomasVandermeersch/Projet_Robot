@@ -104,7 +104,7 @@ def generate_sift_descrpitors(folder_path):
             pickle.dump(des, file)
     
 
-def find_match_sift_from_json(img):
+def find_match_sift_from_pkl(img):
     """
     this method return the list of all the reference images from the most probable to the less one
 
@@ -122,23 +122,12 @@ def find_match_sift_from_json(img):
     matches = []
     kp1, des_test = sift.detectAndCompute(img,None)
     for des_path in list_path:
-        des_dict = {}
-        with open("src/sift_descriptors/"+des_path[0:len(des_path)-5]+".pkl", "r") as file:
-            des_dict = json.load(file)
-        #build the name of the image
-        splitted = des_path.split("_")
-        im_name = splitted[2]+"_"+splitted[3][0:len(splitted[3])-54+".jpg"
-        des_ref = np.array(des_dict[im_name])
-        print(type(des_ref), type(des_test))
-        print(np.shape(des_ref), np.shape(des_test))
-        # print(np.dtype(des_ref), np.dtype(des_test))
-        print(des_ref)
-        # des_ref.astype("uint32")
-        # des_test.astype("uint32")
+        with open("src/sift_descriptors/"+des_path[0:len(des_path)-4]+".pkl", "rb") as file:
+            des_ref = pickle.load(file)
         matches_basic = bf.knnMatch(des_test,des_ref,k=2)
         matches.append(apply_Lowe_test(matches_basic, 0.7))
         score_matched = [len(x) for x in matches]
-   
+    
     test = dict(zip(list_path, score_matched)) 
     sorted_values = {k: v for k, v in sorted(test.items(), key=lambda item: item[1],reverse=True)}
     print(sorted_values)
