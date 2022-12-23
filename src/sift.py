@@ -111,6 +111,7 @@ def find_match_sift_from_pkl(img):
     this method return the list of all the reference images from the most probable to the less one
 
     arguments: 
+
         -->img a bgr image from witch we want to find the match
     """
     start = time.time()
@@ -125,7 +126,6 @@ def find_match_sift_from_pkl(img):
     matches = []
     kp1, des_test = sift.detectAndCompute(img,None)
     for des_path in list_path:
-        print(des_path)
         with open("src/sift_descriptors/"+des_path[0:len(des_path)-4]+".pkl", "rb") as file:
             des_ref = pickle.load(file)
         matches_basic = bf.knnMatch(des_test,des_ref,k=2)
