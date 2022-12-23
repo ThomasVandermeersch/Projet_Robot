@@ -4,6 +4,7 @@ import sift
 import json
 import numpy as np
 from matplotlib import pyplot as plt
+import color_signature
 
 #get the filename of every image
 images_paths  = os.listdir("src/images")
@@ -41,9 +42,12 @@ images_paths  = os.listdir("src/images")
 
 # sift.generate_sift_descrpitors("images_desjardin")
 # print(features)
-images_list = os.listdir("src/image_test_bon")
-for image in images_list:
-    print("--------------------------------------")
-    print(image)
-    img = cv2.imread("src/image_test_bon/"+image)
-    sift.find_match_sift_from_pkl(img)
+# images_list = os.listdir("src/image_test_bon")
+# for image in images_list:
+#     print("--------------------------------------")
+#     print(image)
+#     img = cv2.imread("src/image_test_bon/"+image)
+#     sift.find_match_sift_from_pkl(img)
+
+img = cv2.imread("src\images_desjardin\IMG_1279.jpg")
+color_signature.compute_color_signature(img)
