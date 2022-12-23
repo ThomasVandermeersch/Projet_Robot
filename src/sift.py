@@ -93,7 +93,8 @@ def find_match_sift(img):
 def generate_sift_descrpitors(folder_path):
     list_images = os.listdir("src/"+folder_path)
     sift = cv2.SIFT_create()
-    for image in list_images[0:5]:
+    for image in list_images:
+        print(image)
         img = cv2.imread("src/"+folder_path + "/" + image)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         kp, des = sift.detectAndCompute(img, None)
