@@ -18,3 +18,19 @@ def store_mean_values(images_folder):
         means_dict[image] = compute_color_signature(images_folder+"/"+image)
     with open("src/means.json", "w") as file:
             json.dump(means_dict, file, indent = 4)
+
+def compare_color_signature(mean_test, mean_ref, tolerence):
+    """
+    cette méthode retourne true si les deux moyennes sont suffisement proche
+    false sinon
+    """
+    count = 0
+    for i in range(len(mean_ref)):
+        if mean_test[i] <= (mean_ref[i] + 15) and mean_test[i] >= (mean_ref[i] - 15):
+            count += 1
+
+    if count == len(mean_test)-1:
+        return True
+    else:
+        return False
+    
