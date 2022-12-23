@@ -39,11 +39,11 @@ images_paths  = os.listdir("src/images")
 #     print("_______________________________________________________")
         
 
-sift.generate_sift_descrpitors("images_desjardin")
+# sift.generate_sift_descrpitors("images_desjardin")
 # print(features)
 # images_list = os.listdir("src/images_desjardin")
 # for image in images_list[0:5]:
 #     print("--------------------------------------")
 #     img = cv2.imread("src/images_desjardin/"+image)
-# img = cv2.imread("src/images_test/IMG_2617.jpeg")
-# sift.find_match_sift_from_pkl(img)
+img = cv2.imread("src/images_test/IMG_2617.jpeg")
+sift.find_match_sift_from_pkl(img)
