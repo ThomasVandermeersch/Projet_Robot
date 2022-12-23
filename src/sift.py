@@ -136,6 +136,7 @@ def find_match_sift_from_pkl(img):
     sorted_values = {k: v for k, v in sorted(test.items(), key=lambda item: item[1],reverse=True)}
     end = time.time()
     print(end-start)
-    print(sorted_values)
+    # print(sorted_values)
+    return sorted_values
 
 
