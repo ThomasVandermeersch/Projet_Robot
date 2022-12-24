@@ -42,27 +42,27 @@ import color_signature
 
 # sift.generate_sift_descrpitors("images_desjardin")
 # print(features)
-images_list = os.listdir("src/image_test_bon")
-for image in images_list:
-    print("--------------------------------------")
-    print(image)
-    img = cv2.imread("src/image_test_bon/"+image)
-    print(color_signature.compute_color_signature(img))
-    matches = sift.find_match_sift_from_pkl(img)
-    #print la repartition de couleur pour les dix premières valeurs
-    best_match = list(matches.items())[0:5]
-    pkl_name, pkl_score = [x[0] for x in best_match], [x[1] for x in best_match]
-    im_name = []
-    means = []
-    for name in pkl_name:
-        splitted = name.split("_")
-        image_name = splitted[2] + "_" + splitted[3][:len(splitted[3])-4] + ".jpg"
-        image = cv2.imread("src/images_desjardin/"+image_name)
-        means.append(color_signature.compute_color_signature(image))
-    # print(pkl_name)
-    # print(pkl_score)
-    for i in range(len(pkl_name)):
-        print([pkl_name[i], pkl_score[i], means[i]])
+# images_list = os.listdir("src/image_test_bon")
+# for image in images_list:
+#     print("--------------------------------------")
+#     print(image)
+#     img = cv2.imread("src/image_test_bon/"+image)
+#     print(color_signature.compute_color_signature(img))
+#     matches = sift.find_match_sift_from_pkl(img)
+#     #print la repartition de couleur pour les dix premières valeurs
+#     best_match = list(matches.items())[0:5]
+#     pkl_name, pkl_score = [x[0] for x in best_match], [x[1] for x in best_match]
+#     im_name = []
+#     means = []
+#     for name in pkl_name:
+#         splitted = name.split("_")
+#         image_name = splitted[2] + "_" + splitted[3][:len(splitted[3])-4] + ".jpg"
+#         image = cv2.imread("src/images_desjardin/"+image_name)
+#         means.append(color_signature.compute_color_signature(image))
+#     # print(pkl_name)
+#     # print(pkl_score)
+#     for i in range(len(pkl_name)):
+#         print([pkl_name[i], pkl_score[i], means[i]])
 
 # img = cv2.imread("src\images_desjardin\IMG_1279.jpg")
 # color_signature.compute_color_signature(img)
