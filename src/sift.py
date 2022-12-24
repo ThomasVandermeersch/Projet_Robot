@@ -131,11 +131,12 @@ def find_match_sift_from_pkl(img):
         matches_basic = bf.knnMatch(des_test,des_ref,k=2)
         matches.append(apply_Lowe_test(matches_basic, 0.7))
         score_matched = [len(x) for x in matches]
+
     
     test = dict(zip(list_path, score_matched)) 
     sorted_values = {k: v for k, v in sorted(test.items(), key=lambda item: item[1],reverse=True)}
     end = time.time()
-    print(end-start)
+    print("temps d'exécution : ", end-start)
     # print(sorted_values)
     return sorted_values
 
